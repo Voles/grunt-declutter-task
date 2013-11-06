@@ -1,12 +1,8 @@
-/*
- * Declutter
- */
-
 'use strict';
 
 module.exports = function(grunt) {
 
-  grunt.registerMultiTask('declutter', 'A Grunt module that checks if you explicitly defined which files from a folder you want to select.', function() {
+  grunt.registerMultiTask('declutter', 'A Grunt module that checks if you explicitly defined the files you want to use, for each folder.', function() {
     var options = this.options({
       rules: {}
     });
@@ -29,11 +25,9 @@ module.exports = function(grunt) {
         componentsList += '- ' + component + '\n';
       });
 
-      grunt.fatal('Please update the \'vendorFiles\' section in \'build.config.js\' and specify ' +
-                'which files to include in the final build for the following components:\n' + 
-                componentsList, 1);
+      grunt.fatal('Please update the declutter options and specify ' +
+                  'which files to include for the following components:\n' + 
+                  componentsList, 1);
     }
-
   });
-
 };
