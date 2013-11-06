@@ -1,27 +1,20 @@
 /*
- * declutter
- * https://github.com/Voles/declutter
- *
- * Copyright (c) 2013 Voles
- * Licensed under the MIT license.
+ * Declutter
  */
 
 'use strict';
 
 module.exports = function(grunt) {
 
-  // Please see the Grunt documentation for more information regarding task
-  // creation: http://gruntjs.com/creating-tasks
-
   grunt.registerMultiTask('declutter', 'A Grunt module that checks if you explicitly defined which files from a folder you want to select.', function() {
-    // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      rules: {}
+      rules: 'tpl.conf.js'
     });
 
-    var invalidComponents = [];
+    var la = require('./' + options.rules);
+    console.log(la);
 
-    // load rules
+    var invalidComponents = [];
     this.files.forEach(function (files) {
       grunt.file.expand(files.src).forEach(function (f) {
         var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);

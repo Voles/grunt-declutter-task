@@ -37,29 +37,45 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
-Type: `String`
-Default value: `',  '`
+#### options.rules
+Type: `Object`
+Default value: `{}`
 
-A string value that is used to do something with whatever.
+An object containing the rules to be used by the task.
 
-#### options.punctuation
-Type: `String`
-Default value: `'.'`
+Example:
 
-A string value that is used to do something else with whatever else.
+```js
+{
+    'my-folder': [
+        'file-in-folder.js',
+        'assets-in-folder/*'
+    ]
+}
+```
 
 ### Usage Examples
 
 #### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, the directories `plugins` and `vendors` are both tested according to the specified rules.
+If there is a folder named `another-plugin` inside the `plugins` of `vendors` folder, the validation will fail because there are no rules defined for this folder.
+
 
 ```js
 grunt.initConfig({
   declutter: {
-    options: {},
+    options: {
+      'angular': [
+        'angular.min.js'
+      ],
+      'targeting-plugin': [
+        'images/*',
+        'plugin.js'
+      ]
+    },
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'plugins/*',
+      'vendors/*'
     },
   },
 })
