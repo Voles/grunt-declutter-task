@@ -21,6 +21,12 @@ module.exports = function(grunt) {
 
     var invalidComponents = [];
 
+
+    grunt.file.expand('*').forEach(function (f) {
+      console.log(f);
+    });
+
+
     // load rules
     console.log(grunt.path.resolve(options.configFile));
     try {
@@ -31,6 +37,8 @@ module.exports = function(grunt) {
       log.error(e);
       log.error(e.message);
     }
+
+
 
     //grunt.file.expands(this.files.src)
 
