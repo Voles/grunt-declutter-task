@@ -16,12 +16,32 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('declutter', 'A Grunt module that checks if you explicitly defined which files from a folder you want to select.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      punctuation: '.',
-      separator: ', '
+      rules: {}
     });
 
-    // Iterate over all specified file groups.
+    var invalidComponents = [];
+
     this.files.forEach(function(f) {
+      var componentName = dir.substring(f.lastIndexOf('/') + 1, f.length);
+
+      if (!options.rules[componentName]) {
+        invalidComponents.push(componentName);
+      }
+
+      if (invalidComponents.length >= 1) {
+        var componentsList = '';
+
+        invalidComponents.forEach(function (component) {
+          componentsList += '- ' + component + '\n';
+        });
+
+        grunt.fatal('Please update the \'vendorFiles\' section in \'build.config.js\' and specify ' +
+                    'which files to include in the final build for the following components:\n' + 
+                    componentsList, 1);
+      }
+
+
+      /*
       // Concat specified files.
       var src = f.src.filter(function(filepath) {
         // Warn on and remove invalid source files (if nonull was set).
@@ -44,6 +64,7 @@ module.exports = function(grunt) {
 
       // Print a success message.
       grunt.log.writeln('File "' + f.dest + '" created.');
+      */
     });
   });
 
