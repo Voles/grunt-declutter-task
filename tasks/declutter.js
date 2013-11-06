@@ -21,7 +21,13 @@ module.exports = function(grunt) {
 
     var invalidComponents = [];
     console.log(this.files);
-    this.files.forEach(function(f) {
+    console.log(this.files.src);
+
+    //grunt.file.expands(this.files.src)
+
+    //this.files.forEach(function(f) {
+    grunt.file.expands(this.files.src).forEach(function (f) {
+      console.log(f);
       var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
 
       if (!options.rules[componentName]) {
