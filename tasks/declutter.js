@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     var invalidComponents = [];
 
     this.files.forEach(function(f) {
-      var componentName = dir.substring(f.lastIndexOf('/') + 1, f.length);
+      var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
 
       if (!options.rules[componentName]) {
         invalidComponents.push(componentName);
