@@ -8,11 +8,8 @@ module.exports = function(grunt) {
 
   grunt.registerMultiTask('declutter', 'A Grunt module that checks if you explicitly defined which files from a folder you want to select.', function() {
     var options = this.options({
-      rules: 'tpl.conf.js'
+      rules: {}
     });
-
-    var la = require('./' + options.rules);
-    console.log(la);
 
     var invalidComponents = [];
     this.files.forEach(function (files) {
