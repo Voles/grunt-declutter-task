@@ -40,13 +40,7 @@ module.exports = function(grunt) {
           invalidComponents.forEach(function (component) {
             componentsList += '- ' + component + '\n';
           });
-
-          grunt.fatal('Please update the \'vendorFiles\' section in \'build.config.js\' and specify ' +
-                      'which files to include in the final build for the following components:\n' + 
-                      componentsList, 1);
         }
-
-
         /*
         // Concat specified files.
         var src = f.src.filter(function(filepath) {
@@ -73,6 +67,11 @@ module.exports = function(grunt) {
         */
       });
     });
+
+    grunt.fatal('Please update the \'vendorFiles\' section in \'build.config.js\' and specify ' +
+                'which files to include in the final build for the following components:\n' + 
+                componentsList, 1);
+
   });
 
 };
