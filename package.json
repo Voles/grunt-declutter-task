@@ -1,5 +1,5 @@
 {
-  "name": "declutter",
+  "name": "grunt-declutter-task",
   "description": "A Grunt module that checks if you explicitly defined which files from a folder you want to select.",
   "version": "0.1.0",
   "homepage": "https://github.com/Voles/declutter",
