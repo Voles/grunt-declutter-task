@@ -22,7 +22,7 @@ module.exports = function(grunt) {
     var invalidComponents = [];
 
     // load rules
-    console.log(path.resolve(options.configFile));
+    console.log(grunt.path.resolve(options.configFile));
     try {
       console.log(options.configFile);
       var rules = require(options.configFile);  
