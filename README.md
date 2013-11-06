@@ -1,6 +1,6 @@
 # declutter
 
-> A Grunt module that checks if you explicitly defined which files from a folder you want to select.
+> A Grunt module that checks if you explicitly defined which files from a folder you want to use.
 
 ## Getting Started
 This plugin requires Grunt `~0.4.1`
@@ -54,14 +54,16 @@ If there is a folder named `another-plugin` inside the `plugins` of `vendors` fo
 grunt.initConfig({
   declutter: {
     options: {
-      'angular': [
-        'angular.min.js'
-      ],
+        rules: {
+          'angular': [
+            'angular.min.js'
+          ],
 
-      'targeting-plugin': [
-        'images/*',
-        'plugin.js'
-      ]
+          'targeting-plugin': [
+            'images/*',
+            'plugin.js'
+          ]
+        }
     },
     files: {
       'plugins/*',
@@ -76,4 +78,3 @@ In lieu of a formal styleguide, take care to maintain the existing coding style.
 
 ## Release History
  * v0.1.0
- 
