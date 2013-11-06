@@ -16,41 +16,17 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('declutter', 'A Grunt module that checks if you explicitly defined which files from a folder you want to select.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      configFile: 'config.tpl.js'
+      rules: {}
     });
 
     var invalidComponents = [];
 
-
-    console.log();
-    console.log(grunt.file.readJSON(options.configFile));
-    grunt.file.expand(options.configFile).forEach(function (f) {
-      console.log(f);
-      
-    });
-
-
     // load rules
-    console.log(grunt.path.resolve(options.configFile));
-    try {
-      console.log(options.configFile);
-      var rules = require(options.configFile);  
-    } catch (e) {
-      console.log(e);
-      log.error(e);
-      log.error(e.message);
-    }
-
-
-
-    //grunt.file.expands(this.files.src)
-
-    //this.files.forEach(function(f) {
     this.files.forEach(function (files) {
       grunt.file.expand(files.src).forEach(function (f) {
         var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
 
-        if (!rules[componentName]) {
+        if (!config.rules[componentName]) {
           invalidComponents.push(componentName);
         }
         /*
