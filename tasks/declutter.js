@@ -20,7 +20,7 @@ module.exports = function(grunt) {
     });
 
     var invalidComponents = [];
-
+    console.log(this.files);
     this.files.forEach(function(f) {
       var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
 
