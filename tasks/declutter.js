@@ -26,51 +26,52 @@ module.exports = function(grunt) {
     //grunt.file.expands(this.files.src)
 
     //this.files.forEach(function(f) {
-    grunt.file.expand(this.files.src).forEach(function (f) {
-      console.log(f);
-      var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
+    this.files.forEach(function (files) {
+      grunt.file.expand(files.src).forEach(function (f) {
+        var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
 
-      if (!options.rules[componentName]) {
-        invalidComponents.push(componentName);
-      }
-
-      if (invalidComponents.length >= 1) {
-        var componentsList = '';
-
-        invalidComponents.forEach(function (component) {
-          componentsList += '- ' + component + '\n';
-        });
-
-        grunt.fatal('Please update the \'vendorFiles\' section in \'build.config.js\' and specify ' +
-                    'which files to include in the final build for the following components:\n' + 
-                    componentsList, 1);
-      }
-
-
-      /*
-      // Concat specified files.
-      var src = f.src.filter(function(filepath) {
-        // Warn on and remove invalid source files (if nonull was set).
-        if (!grunt.file.exists(filepath)) {
-          grunt.log.warn('Source file "' + filepath + '" not found.');
-          return false;
-        } else {
-          return true;
+        if (!options.rules[componentName]) {
+          invalidComponents.push(componentName);
         }
-      }).map(function(filepath) {
-        // Read file source.
-        return grunt.file.read(filepath);
-      }).join(grunt.util.normalizelf(options.separator));
 
-      // Handle options.
-      src += options.punctuation;
+        if (invalidComponents.length >= 1) {
+          var componentsList = '';
 
-      // Write the destination file.
-      grunt.file.write(f.dest, src);
+          invalidComponents.forEach(function (component) {
+            componentsList += '- ' + component + '\n';
+          });
 
-      // Print a success message.
-      grunt.log.writeln('File "' + f.dest + '" created.');
-      */
+          grunt.fatal('Please update the \'vendorFiles\' section in \'build.config.js\' and specify ' +
+                      'which files to include in the final build for the following components:\n' + 
+                      componentsList, 1);
+        }
+
+
+        /*
+        // Concat specified files.
+        var src = f.src.filter(function(filepath) {
+          // Warn on and remove invalid source files (if nonull was set).
+          if (!grunt.file.exists(filepath)) {
+            grunt.log.warn('Source file "' + filepath + '" not found.');
+            return false;
+          } else {
+            return true;
+          }
+        }).map(function(filepath) {
+          // Read file source.
+          return grunt.file.read(filepath);
+        }).join(grunt.util.normalizelf(options.separator));
+
+        // Handle options.
+        src += options.punctuation;
+
+        // Write the destination file.
+        grunt.file.write(f.dest, src);
+
+        // Print a success message.
+        grunt.log.writeln('File "' + f.dest + '" created.');
+        */
+      });
     });
   });
 
