@@ -22,8 +22,14 @@ module.exports = function(grunt) {
     var invalidComponents = [];
 
     // load rules
-    var rules = require(options.configFile);
-
+    try {
+      console.log(options.configFile);
+      var rules = require(options.configFile);  
+    } catch (e) {
+      console.log(e);
+      log.error(e);
+      log.error(e.message);
+    }
 
     //grunt.file.expands(this.files.src)
 
