@@ -26,7 +26,7 @@ module.exports = function(grunt) {
     //grunt.file.expands(this.files.src)
 
     //this.files.forEach(function(f) {
-    grunt.file.expands(this.files.src).forEach(function (f) {
+    grunt.file.expand(this.files.src).forEach(function (f) {
       console.log(f);
       var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
 
