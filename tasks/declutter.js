@@ -16,12 +16,14 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('declutter', 'A Grunt module that checks if you explicitly defined which files from a folder you want to select.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      rules: {}
+      rules: 'config.tpl.js'
     });
 
     var invalidComponents = [];
-    console.log(this.files);
-    console.log(this.files.src);
+
+    // load rules
+    var rules = require(options.rules);
+
 
     //grunt.file.expands(this.files.src)
 
@@ -30,7 +32,7 @@ module.exports = function(grunt) {
       grunt.file.expand(files.src).forEach(function (f) {
         var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
 
-        if (!options.rules[componentName]) {
+        if (!rules[componentName]) {
           invalidComponents.push(componentName);
         }
         /*
