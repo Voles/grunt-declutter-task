@@ -26,7 +26,7 @@ module.exports = function(grunt) {
       grunt.file.expand(files.src).forEach(function (f) {
         var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
 
-        if (!config.rules[componentName]) {
+        if (!options.rules[componentName]) {
           invalidComponents.push(componentName);
         }
         /*
