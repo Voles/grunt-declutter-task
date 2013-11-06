@@ -16,13 +16,13 @@ module.exports = function(grunt) {
   grunt.registerMultiTask('declutter', 'A Grunt module that checks if you explicitly defined which files from a folder you want to select.', function() {
     // Merge task-specific and/or target-specific options with these defaults.
     var options = this.options({
-      rules: 'config.tpl.js'
+      configFile: 'config.tpl.js'
     });
 
     var invalidComponents = [];
 
     // load rules
-    var rules = require(options.rules);
+    var rules = require(options.configFile);
 
 
     //grunt.file.expands(this.files.src)
