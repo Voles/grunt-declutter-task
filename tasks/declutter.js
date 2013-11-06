@@ -22,9 +22,10 @@ module.exports = function(grunt) {
     var invalidComponents = [];
 
 
-    console.log(options.configFile);
-    grunt.file.expand('*').forEach(function (f) {
+    console.log();
+    grunt.file.expand(options.configFile).forEach(function (f) {
       console.log(f);
+      console.log(grunt.file.readJSON(file));
     });
 
 
