@@ -25,7 +25,7 @@ module.exports = function(grunt) {
     this.files.forEach(function (files) {
       grunt.file.expand(files.src).forEach(function (f) {
         var componentName = f.substring(f.lastIndexOf('/') + 1, f.length);
-
+        console.log('- ' + f);
         if (!options.rules[componentName]) {
           invalidComponents.push(componentName);
         }
