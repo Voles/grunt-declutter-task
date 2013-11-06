@@ -23,9 +23,10 @@ module.exports = function(grunt) {
 
 
     console.log();
+    console.log(grunt.file.readJSON(options.configFile));
     grunt.file.expand(options.configFile).forEach(function (f) {
       console.log(f);
-      console.log(grunt.file.readJSON(file));
+      
     });
 
 
